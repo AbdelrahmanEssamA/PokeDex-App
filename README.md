@@ -1,7 +1,7 @@
-#Pokedex React App
+# Pokedex React App
 sing PokeApi this App fetches the date of the first 3 gen Pokemons with the abiltu to select any one of them to display more information and live searching feature
 
-##Deployment
+## Deployment
 https://determined-jones-0cf83e.netlify.app/
 
 # Getting Started with Create React App
