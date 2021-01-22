@@ -13,6 +13,7 @@ const useStyles = makeStyles({
       backgroundImage: `url(${"https://i.pinimg.com/originals/f2/5f/7a/f25f7aee4d558219fb64b9e2f223d64b.jpg"})`,
       backgroundAttachment: "fixed",
       backgroundSize: "cover",
+      height: "100vh",
    },
    cardMedia: {
       backgroundColor: "#fcfcfc",
