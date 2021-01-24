@@ -1,88 +1,22 @@
-import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import Pokedex from "./components/Pokedex";
 import Pokemon from "./components/Pokemon";
-import SearchIcon from "@material-ui/icons/Search";
-import { fade, makeStyles } from "@material-ui/core/styles";
-import { AppBar, Toolbar, InputBase } from "@material-ui/core";
-
-const useStyles = makeStyles((theme) => ({
-   search: {
-      position: "relative",
-      borderRadius: theme.shape.borderRadius,
-      backgroundColor: fade(theme.palette.common.white, 0.15),
-      "&:hover": {
-         backgroundColor: fade(theme.palette.common.white, 0.25),
-      },
-      marginLeft: 0,
-      width: "100%",
-      [theme.breakpoints.up("sm")]: {
-         marginLeft: theme.spacing(1),
-         width: "auto",
-      },
-   },
-   searchIcon: {
-      padding: theme.spacing(0, 2),
-      height: "100%",
-      position: "absolute",
-      pointerEvents: "none",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-   },
-   inputRoot: {
-      color: "inherit",
-   },
-   inputInput: {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-      transition: theme.transitions.create("width"),
-      width: "100%",
-      [theme.breakpoints.up("sm")]: {
-         width: "12ch",
-         "&:focus": {
-            width: "20ch",
-         },
-      },
-   },
-}));
+import { PokemonProvider } from "./context/PokemonContext";
+import NavBar from "./components/NavBar";
 function App() {
-   const classes = useStyles();
-   const [filter, setFilter] = useState("");
-
-   const handleSearch = (e) => {
-      setFilter(e.target.value.toLowerCase());
-   };
    return (
       <div>
-         <AppBar position='static'>
-            <Toolbar>
-               <div className={classes.search}>
-                  <div className={classes.searchIcon}>
-                     <SearchIcon />
-                  </div>
-                  <InputBase
-                     onChange={handleSearch}
-                     placeholder='Search…'
-                     label='Pokemon'
-                     classes={{
-                        root: classes.inputRoot,
-                        input: classes.inputInput,
-                     }}
-                     inputProps={{ "aria-label": "search" }}
-                  />
-               </div>
-            </Toolbar>
-         </AppBar>
-         <Switch>
-            <Route
-               exact
-               path='/'
-               render={(props) => <Pokedex {...props} searchFilter={filter} />}
-            />
-            <Route exact path='/:pokemonId' render={(props) => <Pokemon {...props} />} />
-         </Switch>
+         <PokemonProvider>
+            <NavBar />
+            <Switch>
+               <Route exact path='/' render={(props) => <Pokedex {...props} />} />
+               <Route
+                  exact
+                  path='/:pokemonId'
+                  render={(props) => <Pokemon {...props} />}
+               />
+            </Switch>
+         </PokemonProvider>
       </div>
    );
 }

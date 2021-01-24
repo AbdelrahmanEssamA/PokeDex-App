@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Grid, CardContent, Card, CircularProgress, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import { toFirstCharUppercase } from "../constant";
+import { usePokemon } from "../context/PokemonContext";
+
 const useStyles = makeStyles({
    PokedexContainer: {
       width: "100%",
@@ -13,7 +15,8 @@ const useStyles = makeStyles({
       backgroundImage: `url(${"https://i.pinimg.com/originals/f2/5f/7a/f25f7aee4d558219fb64b9e2f223d64b.jpg"})`,
       backgroundAttachment: "fixed",
       backgroundSize: "cover",
-      height: "100vh",
+      height: "100%",
+      minHeight: "100vh",
    },
    cardMedia: {
       backgroundColor: "#fcfcfc",
@@ -41,10 +44,10 @@ const useStyles = makeStyles({
 });
 
 const Pokedex = (props) => {
-   const [pokemonData, setPokemonData] = useState();
+   const { pokemonData, setPokemonData, filter } = usePokemon();
    const classes = useStyles();
    const { history } = props;
-   const { searchFilter } = props;
+   const searchFilter = filter;
    const fetchUrl = "https://pokeapi.co/api/v2/pokemon?limit=386";
 
    useEffect(() => {
