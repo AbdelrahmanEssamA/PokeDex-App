@@ -2,7 +2,7 @@
 Using PokeApi this App fetches the data of the first 3 gen Pokemons with the abilty to select any one of them to display more information and live searching feature
 
 ## Deployment
-https://determined-jones-0cf83e.netlify.app/
+https://pokedex-ae.netlify.app/
 
 # Getting Started with Create React App
 
